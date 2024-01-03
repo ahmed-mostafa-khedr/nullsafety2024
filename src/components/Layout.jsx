@@ -181,7 +181,7 @@ const Layout = () => {
                   className="nav-item menu-item"
                   onClick={() => setActive("testimonials")}
                 >
-                  <Nav.Link
+                  <Link
                     className={`nav-link menu-link  ${
                       active === "testimonials" ? "active" : ""
                     } `}
@@ -189,7 +189,7 @@ const Layout = () => {
                     onClick={() => scrollToSection("testimonials")}
                   >
                     testimonials
-                  </Nav.Link>
+                  </Link>
                 </li>
                 <li
                   className="nav-item menu-item"
