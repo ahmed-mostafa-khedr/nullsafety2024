@@ -83,11 +83,11 @@ const Layout = () => {
         </div>
         <div className="container">
           <nav className="menu-navbar" id="main-nav">
-            <div className="header-logo">
+            <div className="header-logo" onClick={() => setActive("home")}>
               <NavLink
                 className="logo-link"
                 to="/"
-                onClick={() => setActive("home")}
+                onClick={() => scrollToSection("page-hero")}
                 end
               >
                 <img
@@ -107,13 +107,16 @@ const Layout = () => {
             </div>
             <div className="links menu-wrapper ">
               <ul className="d-flex  list-unstyled ">
-                <li className="nav-item menu-item has-sub-menu">
+                <li
+                  className="nav-item menu-item has-sub-menu"
+                  onClick={() => setActive("home")}
+                >
                   <NavLink
                     className={`nav-link menu-link  ${
                       active === "home" ? "active" : ""
                     } `}
                     to="/"
-                    onClick={() => setActive("home")}
+                    onClick={() => scrollToSection("page-hero")}
                   >
                     home
                   </NavLink>
@@ -450,7 +453,7 @@ const Layout = () => {
             <div className="row">
               <div className="col-12 col-md-6 d-flex justify-content-start">
                 <p className="creadits">
-                  &copy; 2023 Created by:
+                  &copy; 2024 Created by:
                   <a className="link" href="#0">
                     Ahmed Mostafa
                   </a>
