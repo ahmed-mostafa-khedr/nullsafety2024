@@ -1,0 +1,52 @@
+@media screen and (min-width: 768px) {
+  .vc_row[data-vc-full-width]:not(.vc_parallax) {
+    overflow: visible;
+  }
+  .vc_row[data-vc-full-width] {
+    transition: opacity 0.5s ease;
+    overflow: hidden;
+  }
+
+  .vc_custom_1498994231680 {
+    background-image: url(../../images/06/bg-14.jpg) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }
+}
+.vc_row[data-vc-full-width]:not(.vc_parallax) {
+  overflow: visible;
+}
+.vc_row[data-vc-full-width] {
+  transition: opacity 0.5s ease;
+  overflow: hidden;
+}
+.vc_custom_1498994565285 {
+  background-image: url(https://playa.ancorathemes.com/wp-content/uploads/2017/06/bg-15.jpg?id=418) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+.vc_custom_1498994231680 a {
+  width: fit-content !important;
+}
+@media screen and (max-width: 768px) {
+  .vc_custom_1498994231680 h6,
+  .vc_custom_1498994231680 h2 {
+    text-align: start !important;
+  }
+  .vc_custom_1498994231680 p {
+    text-align: center !important;
+  }
+  .vc_custom_1498994231680 a {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+    width: fit-content !important;
+  }
+  .membership-first-section {
+    margin-top: 0 !important;
+  }
+  .membership-first-section div.vc_row {
+    padding-bottom: 10vh !important;
+  }
+}

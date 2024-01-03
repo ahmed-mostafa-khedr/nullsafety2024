@@ -1,0 +1,145 @@
+.hover {
+  display: none !important;
+}
+
+.on-hover a:hover span:nth-child(1) {
+  animation: shake 0.5s !important;
+  animation-iteration-count: infinite !important;
+}
+
+.on-hover:hover .hover {
+  display: inline !important;
+  animation: shake 0.5s !important;
+  animation-iteration-count: infinite !important;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg) !important;
+  }
+
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg) !important;
+  }
+
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+.modal-backdrop {
+  z-index: 9999;
+}
+
+.loader {
+  height: 90vh;
+}
+
+.slick-dots {
+  bottom: -45px !important;
+}
+
+.slick-dots li button:before {
+
+  color: #fff !important;
+
+  opacity: 0.25 !important;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: .8 !important;
+  color: #fff !important;
+}
+
+/* Style the list */
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  text-align: center;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #01447e;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+
+
+.internal {
+  background-attachment: fixed !important;
+  background-size: 100% 55% !important;
+}
+
+
+.internal::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #0000007b;
+}
+
+.nav-item .nav-link.active {
+  color: #01447e !important;
+  font-weight: 500;
+}
+
+.nav-item .nav-link.focus, .nav-item .nav-link.hover {
+  color: #01447e !important;
+  font-weight: 500;
+}

@@ -1,0 +1,29 @@
+.items-container {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none; /* Optional: Disable interactions when hidden */
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: auto; /* Optional: Enable interactions when visible */
+}
+.gallery-page a {
+  padding: 6px !important;
+}
+.bg-main:active,
+.bg-main:focus {
+  background-color: #ffba00 !important;
+}
+.container-more {
+  transition: all 2s ease-in-out !important;
+}
+.items-container {
+  /* You can customize other styles as needed */
+  width: 100%;
+  max-height: unset;
+  overflow: hidden;
+}
