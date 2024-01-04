@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Pricing = () => {
   return (
@@ -22,9 +23,9 @@ const Pricing = () => {
             </p>
           </div>
           <div className=" cta-area   wow fadeInUp" data-wow-delay=".8s">
-            <a className="cta-btn btn-solid    " href="#0">
+            <NavLink className="cta-btn btn-solid" to="pricing-plan">
               see all plans<i className="bi bi-arrow-right icon "></i>
-            </a>
+            </NavLink>
           </div>
         </div>
         <div className="row">

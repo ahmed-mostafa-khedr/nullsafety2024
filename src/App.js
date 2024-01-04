@@ -16,6 +16,10 @@ import Home from "./pages/home";
 import ContactUs from "./pages/contact-us/ContactUs";
 import Faq from "./pages/faq/Faq.jsx";
 import AboutUs from "./pages/about-us/AboutUs.jsx";
+import PricingPage from "./pages/pricing/Pricing.jsx";
+import ServicesPage from "./pages/services/Services.jsx";
+import PortfolioPage from "./pages/portfolio/Portfolio.jsx";
+import News from "./pages/news/News.jsx";
 
 // import Loader from "./Loader.jsx";
 
@@ -32,7 +36,11 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="about" element={<AboutUs />} />
+            <Route path="services" element={<ServicesPage />} />
+            <Route path="projects" element={<PortfolioPage />} />
+            <Route path="pricing-plan" element={<PricingPage />} />
             <Route path="faq" element={<Faq />} />
+            <Route path="news" element={<News />} />
             <Route path="contact" element={<ContactUs />} />
           </Route>
           <Route

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Offer = () => {
   return (
@@ -23,9 +24,9 @@ const Offer = () => {
               </p>
             </div>
             <div className=" cta-area   wow fadeInUp" data-wow-delay=".8s">
-              <a className="cta-btn btn-solid    ">
+              <Link to="/services" className="cta-btn btn-solid    ">
                 see all services <i className="bi bi-arrow-right icon "></i>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="row gx-4 gy-4 services-row ">
@@ -46,9 +47,9 @@ const Offer = () => {
                     Neque repellendus minima reiciendis nobis dolore obcaecati.{" "}
                   </p>
                 </div>
-                <a className="read-more" href="#0">
+                <Link className="read-more" to="services">
                   read more<i className="bi bi-arrow-right icon "></i>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-12 col-md-6  col-lg-4 mx-auto ">
@@ -68,9 +69,9 @@ const Offer = () => {
                     Neque repellendus minima reiciendis nobis dolore obcaecati.{" "}
                   </p>
                 </div>
-                <a className="read-more" href="#0">
+                <Link className="read-more" to="services">
                   read more<i className="bi bi-arrow-right icon "></i>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-12 col-md-6  col-lg-4 mx-auto  ">
@@ -90,9 +91,9 @@ const Offer = () => {
                     Neque repellendus minima reiciendis nobis dolore obcaecati.{" "}
                   </p>
                 </div>
-                <a className="read-more" href="#0">
+                <Link className="read-more" to="services">
                   read more<i className="bi bi-arrow-right icon "></i>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-12 col-md-6  col-lg-4 mx-auto  ">
@@ -112,9 +113,9 @@ const Offer = () => {
                     Neque repellendus minima reiciendis nobis dolore obcaecati.{" "}
                   </p>
                 </div>
-                <a className="read-more" href="#0">
+                <Link className="read-more" to="services">
                   read more<i className="bi bi-arrow-right icon "></i>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-12 col-md-6  col-lg-4 mx-auto  ">
@@ -134,9 +135,9 @@ const Offer = () => {
                     Neque repellendus minima reiciendis nobis dolore obcaecati.{" "}
                   </p>
                 </div>
-                <a className="read-more" href="#0">
+                <Link className="read-more" to="services">
                   read more<i className="bi bi-arrow-right icon "></i>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-12 col-md-6  col-lg-4 mx-auto  ">
@@ -156,9 +157,9 @@ const Offer = () => {
                     Neque repellendus minima reiciendis nobis dolore obcaecati.{" "}
                   </p>
                 </div>
-                <a className="read-more" href="#0">
+                <Link className="read-more" to="services">
                   read more<i className="bi bi-arrow-right icon "></i>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

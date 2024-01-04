@@ -14,10 +14,6 @@ const AboutUs = () => {
         className="internal"
         style={{
           background: `url(${banner})`,
-          padding: "25vh 0 10vh",
-          backgroundSize: "100% 100%",
-
-          backgroundRepeat: "no-repeat",
         }}
       >
         <div

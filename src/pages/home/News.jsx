@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
 const News = () => {
   return (
@@ -7,19 +8,16 @@ const News = () => {
         <div class="sec-heading  ">
           <div class="content-area">
             <span class=" pre-title       wow fadeInUp " data-wow-delay=".2s">
-              blog
+              News
             </span>
             <h2 class=" title    wow fadeInUp" data-wow-delay=".4s">
               latest <span class="hollow-text">news</span>
             </h2>
           </div>
           <div class=" cta-area  cta-area  wow fadeInUp" data-wow-delay=".8s">
-            <a
-              class="cta-btn btn-solid   cta-btn btn-solid  "
-              href="blog-home-3-col.html"
-            >
-              see all posts<i class="bi bi-arrow-right icon "></i>
-            </a>
+            <Link class="cta-btn btn-solid   cta-btn btn-solid  " to="news">
+              see all news<i class="bi bi-arrow-right icon "></i>
+            </Link>
           </div>
         </div>
         <div class="row ">
@@ -42,7 +40,7 @@ const News = () => {
                           alt=""
                         />
                         <span class="post-date">
-                          <span class="day">05</span>oct 2022{" "}
+                          <span class="day">05</span>oct 2024{" "}
                         </span>
                       </div>
                     </a>
@@ -95,7 +93,7 @@ const News = () => {
                           alt=""
                         />
                         <span class="post-date">
-                          <span class="day">15</span>sep 2022{" "}
+                          <span class="day">15</span>sep 2024{" "}
                         </span>
                       </div>
                     </a>
@@ -148,7 +146,7 @@ const News = () => {
                           alt=""
                         />
                         <span class="post-date">
-                          <span class="day">27</span>aug 2022{" "}
+                          <span class="day">27</span>aug 2024{" "}
                         </span>
                       </div>
                     </a>

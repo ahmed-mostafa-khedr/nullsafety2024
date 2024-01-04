@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
-// import Loader from "../Loader";
+import Loader from "../Loader";
 
 const Layout = () => {
   const [active, setActive] = useState("");
   const [show, setShow] = useState(true);
   const [isLightTheme, setLightTheme] = useState(true);
   const [isSticky, setIsSticky] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -33,7 +33,13 @@ const Layout = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isSticky]); // Empty dependency array ensures the effect runs only once on mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
 
+    return () => clearTimeout(timer);
+  }, [loading]);
   const toggleThemeLight = () => {
     setLightTheme((prevTheme) => !prevTheme);
     // Toggle the class on the body element
@@ -54,421 +60,484 @@ const Layout = () => {
   };
   return (
     <>
-      <header
-        className={isSticky ? "header-basic is-sticky" : "header-basic"}
-        id="page-header"
-      >
-        <div className="header-search-box">
-          <div className="close-search"></div>
-          <form
-            className="nav-search search-form"
-            role="search"
-            method="get"
-            action="#"
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          {/* Header */}
+          <header
+            className={isSticky ? "header-basic is-sticky" : "header-basic"}
+            id="page-header"
           >
-            <div className="search-wrapper">
-              <label className="search-lbl">Search for:</label>
-              <input
-                className="search-input"
-                type="search"
-                placeholder="Search..."
-                name="searchInput"
-                autofocus="autofocus"
-              />
-              <button className="search-btn" type="submit">
-                <i className="bi bi-search icon"></i>
-              </button>
-            </div>
-          </form>
-        </div>
-        <div className="container">
-          <nav className="menu-navbar" id="main-nav">
-            <div className="header-logo" onClick={() => setActive("home")}>
-              <NavLink
-                className="logo-link"
-                to="/"
-                onClick={() => scrollToSection("page-hero")}
-                end
+            <div className="header-search-box">
+              <div className="close-search"></div>
+              <form
+                className="nav-search search-form"
+                role="search"
+                method="get"
+                action="#"
               >
-                <img
-                  className="logo-img light-logo"
-                  loading="lazy"
-                  src="logo.png"
-                  alt="logo"
-                  style={{ filter: "brightness(20)" }}
-                />
-                <img
-                  className="logo-img  dark-logo"
-                  loading="lazy"
-                  src="logo.png"
-                  alt="logo"
-                />
-              </NavLink>
-            </div>
-            <div className="links menu-wrapper ">
-              <ul className="d-flex  list-unstyled ">
-                <li
-                  className="nav-item menu-item has-sub-menu"
-                  onClick={() => setActive("home")}
-                >
-                  <NavLink
-                    className={`nav-link menu-link  ${
-                      active === "home" ? "active" : ""
-                    } `}
-                    to="/"
-                    onClick={() => scrollToSection("page-hero")}
-                  >
-                    home
-                  </NavLink>
-                </li>
-                <li
-                  className="nav-item menu-item"
-                  onClick={() => setActive("about")}
-                >
-                  <NavLink
-                    className={`nav-link menu-link  ${
-                      active === "about" ? "active" : ""
-                    } `}
-                    to="about"
-                  >
-                    about us{" "}
-                  </NavLink>
-                </li>
-                <li
-                  className="nav-item menu-item"
-                  onClick={() => setActive("services")}
-                >
-                  <Link
-                    className={`nav-link menu-link navbar-link ${
-                      active === "services" ? "active" : ""
-                    } `}
-                    to="/"
-                    onClick={() => scrollToSection("services")}
-                  >
-                    services
-                  </Link>
-                </li>
-
-                <li
-                  className="nav-item menu-item"
-                  onClick={() => setActive("portfolio")}
-                >
-                  <Link
-                    className={`nav-link menu-link navbar-link ${
-                      active === "portfolio" ? "active" : ""
-                    } `}
-                    to="/"
-                    onClick={() => scrollToSection("portfolio")}
-                  >
-                    portfolio{" "}
-                  </Link>
-                </li>
-                <li
-                  className="nav-item menu-item"
-                  onClick={() => setActive("pricing")}
-                >
-                  <Link
-                    className={`nav-link menu-link  ${
-                      active === "pricing" ? "active" : ""
-                    } `}
-                    to="/"
-                    onClick={() => scrollToSection("pricing")}
-                  >
-                    pricing plans
-                  </Link>
-                </li>
-                <li
-                  className="nav-item menu-item"
-                  onClick={() => setActive("testimonials")}
-                >
-                  <Link
-                    className={`nav-link menu-link  ${
-                      active === "testimonials" ? "active" : ""
-                    } `}
-                    to="/"
-                    onClick={() => scrollToSection("testimonials")}
-                  >
-                    testimonials
-                  </Link>
-                </li>
-                <li
-                  className="nav-item menu-item"
-                  onClick={() => setActive("faq")}
-                >
-                  <NavLink
-                    className={`nav-link menu-link  ${
-                      active === "faq" ? "active" : ""
-                    } `}
-                    to="faq"
-                  >
-                    FAQ
-                  </NavLink>
-                </li>
-                <li className="nav-item menu-item">
-                  <NavLink
-                    className={`nav-link menu-link  ${
-                      active === "contact" ? "active" : ""
-                    } `}
-                    to="contact"
-                    onClick={() => setActive("contact")}
-                  >
-                    contact us
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-            <div className="controls-box">
-              <div className="control  menu-toggler">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
-              <div className="control header-search-btn">
-                <i className="bi bi-search icon"></i>
-              </div>
-
-              <div className="mode-switcher ">
-                <div
-                  onClick={() => {
-                    setShow(false);
-                    toggleThemeLight();
-                  }}
-                  className={
-                    show === false ? "d-none" : "switch-inner go-light "
-                  }
-                  title="  Light Mode "
-                >
-                  <i className="bi bi-sun icon "></i>
+                <div className="search-wrapper">
+                  <label className="search-lbl">Search for:</label>
+                  <input
+                    className="search-input"
+                    type="search"
+                    placeholder="Search..."
+                    name="searchInput"
+                    autofocus="autofocus"
+                  />
+                  <button className="search-btn" type="submit">
+                    <i className="bi bi-search icon"></i>
+                  </button>
                 </div>
-                <div
-                  onClick={() => {
-                    setShow(true);
-                    toggleThemeDark();
-                  }}
-                  className={
-                    show === true ? "  d-none" : "switch-inner go-dark"
-                  }
-                  title="  Dark Mode "
-                >
-                  <i className="bi bi-moon icon "></i>
-                </div>
-              </div>
+              </form>
             </div>
-          </nav>
-        </div>
-      </header>
-      <Outlet />
+            <div className="container">
+              <nav className="menu-navbar" id="main-nav">
+                <div className="header-logo" onClick={() => setActive("home")}>
+                  <NavLink
+                    className="logo-link"
+                    to="/"
+                    onClick={() => {
+                      scrollToSection("page-hero");
+                      setLoading(true);
+                    }}
+                    end
+                  >
+                    <img
+                      className="logo-img light-logo"
+                      loading="lazy"
+                      src="logo.png"
+                      alt="logo"
+                      style={{ filter: "brightness(20)" }}
+                    />
+                    <img
+                      className="logo-img  dark-logo"
+                      loading="lazy"
+                      src="logo.png"
+                      alt="logo"
+                    />
+                  </NavLink>
+                </div>
+                <div className="links menu-wrapper ">
+                  <ul className="d-flex  list-unstyled ">
+                    <li
+                      className="nav-item menu-item has-sub-menu"
+                      onClick={() => setActive("home")}
+                    >
+                      <NavLink
+                        className={`nav-link menu-link  ${
+                          active === "home" ? "active" : ""
+                        } `}
+                        to="/"
+                        onClick={() => scrollToSection("page-hero")}
+                      >
+                        home
+                      </NavLink>
+                    </li>
+                    <li
+                      className="nav-item menu-item"
+                      onClick={() => {
+                        setActive("about");
+                        setLoading(true);
+                      }}
+                    >
+                      <NavLink
+                        className={`nav-link menu-link  ${
+                          active === "about" ? "active" : ""
+                        } `}
+                        to="about"
+                      >
+                        about us
+                      </NavLink>
+                    </li>
+                    <li
+                      className="nav-item menu-item"
+                      onClick={() => setActive("services")}
+                    >
+                      <Link
+                        className={`nav-link menu-link navbar-link ${
+                          active === "services" ? "active" : ""
+                        } `}
+                        to="services"
+                        onClick={() => {
+                          setLoading(true);
+                        }}
+                      >
+                        services
+                      </Link>
+                    </li>
 
-      {/* Footer Start */}
-      <footer className="page-footer dark-color-footer" id="page-footer">
-        <div
-          className="overlay-photo-image-bg"
-          data-bg-img="assets/images/sections-bg-images/footer-bg-1.jpg"
-          data-bg-opacity=".25"
-        ></div>
-        <div className="container">
-          <div className="row footer-cols">
-            <div className="col-12 col-md-8 col-lg-4  footer-col ">
-              <img
-                className="img-fluid footer-logo"
-                loading="lazy"
-                src="logo.png"
-                alt="logo"
-              />
-              <div className="footer-col-content-wrapper">
-                <p className="footer-text-about-us ">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptatibus facere modi possimus dignissimos, aliquam nobis
-                  eaque? Voluptatem magnam quisquam rem.
-                </p>
-              </div>
-              <div className="form-area ">
-                <div className="mailchimp-form ">
-                  <form className="one-field-form" method="post" action="#0">
-                    <div className="field-group ">
-                      <label className="email-label" for="email-input">
-                        {" "}
-                        Subscribe to our news letter
-                      </label>
-                      <input
-                        className="email-input "
-                        type="email"
-                        value=""
-                        name="EMAIL"
-                        id="email-input"
-                        placeholder="Email Address"
-                        autocomplete="off"
-                      />
-                      <div className="cta-area">
-                        <input
-                          className="btn-solid subscribe-btn"
-                          type="submit"
-                          value="Subscribe"
-                          name="subscribe"
-                        />
-                      </div>
+                    <li
+                      className="nav-item menu-item"
+                      onClick={() => setActive("portfolio")}
+                    >
+                      <Link
+                        className={`nav-link menu-link navbar-link ${
+                          active === "portfolio" ? "active" : ""
+                        } `}
+                        to="projects"
+                        onClick={() => {
+                          setLoading(true);
+                        }}
+                      >
+                        portfolio
+                      </Link>
+                    </li>
+                    <li
+                      className="nav-item menu-item"
+                      onClick={() => setActive("pricing")}
+                    >
+                      <Link
+                        className={`nav-link menu-link  ${
+                          active === "pricing" ? "active" : ""
+                        } `}
+                        to="pricing-plan"
+                        onClick={() => {
+                          setLoading(true);
+                        }}
+                      >
+                        pricing plans
+                      </Link>
+                    </li>
+                    <li
+                      className="nav-item menu-item"
+                      onClick={() => setActive("testimonials")}
+                    >
+                      <Link
+                        className={`nav-link menu-link  ${
+                          active === "testimonials" ? "active" : ""
+                        } `}
+                        to="/"
+                        onClick={() => {
+                          scrollToSection("testimonials");
+                        }}
+                      >
+                        testimonials
+                      </Link>
+                    </li>
+                    <li
+                      className="nav-item menu-item"
+                      onClick={() => setActive("our-clients")}
+                    >
+                      <Link
+                        className={`nav-link menu-link  ${
+                          active === "our-clients" ? "active" : ""
+                        } `}
+                        to="/"
+                        onClick={() => {
+                          scrollToSection("our-clients");
+                        }}
+                      >
+                        Our Clients
+                      </Link>
+                    </li>
+                    <li
+                      className="nav-item menu-item"
+                      onClick={() => {
+                        setActive("faq");
+                        setLoading(true);
+                      }}
+                    >
+                      <NavLink
+                        className={`nav-link menu-link  ${
+                          active === "faq" ? "active" : ""
+                        } `}
+                        to="faq"
+                      >
+                        FAQ
+                      </NavLink>
+                    </li>
+                    <li
+                      className="nav-item menu-item"
+                      onClick={() => setActive("news")}
+                    >
+                      <Link
+                        className={`nav-link menu-link  ${
+                          active === "news" ? "active" : ""
+                        } `}
+                        to="news"
+                        onClick={() => {
+                          setLoading(true);
+                        }}
+                      >
+                        News
+                      </Link>
+                    </li>
+                    <li className="nav-item menu-item">
+                      <NavLink
+                        className={`nav-link menu-link  ${
+                          active === "contact" ? "active" : ""
+                        } `}
+                        to="contact"
+                        onClick={() => {
+                          setActive("contact");
+                          setLoading(true);
+                        }}
+                      >
+                        contact us
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
+                <div className="controls-box">
+                  <div className="control  menu-toggler">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+
+                  <div className="control header-search-btn">
+                    <i className="bi bi-search icon"></i>
+                  </div>
+
+                  <div className="mode-switcher ">
+                    <div
+                      onClick={() => {
+                        setShow(false);
+                        toggleThemeLight();
+                      }}
+                      className={
+                        show === false ? "d-none" : "switch-inner go-light "
+                      }
+                      title="  Light Mode "
+                    >
+                      <i className="bi bi-sun icon "></i>
                     </div>
-                    <span className="email-notice">
-                      *we will not share your personal info
-                    </span>
-                  </form>
+                    <div
+                      onClick={() => {
+                        setShow(true);
+                        toggleThemeDark();
+                      }}
+                      className={
+                        show === true ? "  d-none" : "switch-inner go-dark"
+                      }
+                      title="  Dark Mode "
+                    >
+                      <i className="bi bi-moon icon "></i>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </nav>
             </div>
-            <div className="col-6 col-lg-2  footer-col ">
-              <h2 className=" footer-col-title    ">useful links</h2>
-              <div className="footer-col-content-wrapper">
-                <ul className="footer-menu ">
-                  <li className="footer-menu-item">
-                    <i className="bi bi-arrow-right icon "></i>
-                    <a className="footer-menu-link" href="#0">
-                      Google
-                    </a>
-                  </li>
-                  <li className="footer-menu-item">
-                    <i className="bi bi-arrow-right icon "></i>
-                    <a className="footer-menu-link" href="#0">
-                      Dribbble
-                    </a>
-                  </li>
-                  <li className="footer-menu-item">
-                    <i className="bi bi-arrow-right icon "></i>
-                    <a className="footer-menu-link" href="#0">
-                      linkedIn
-                    </a>
-                  </li>
-                  <li className="footer-menu-item">
-                    <i className="bi bi-arrow-right icon "></i>
-                    <a className="footer-menu-link" href="#0">
-                      wikipedia
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-6 col-lg-2 footer-col ">
-              <h2 className=" footer-col-title    ">Resources</h2>
-              <div className="footer-col-content-wrapper">
-                <ul className="footer-menu">
-                  <li className="footer-menu-item">
-                    <i className="bi bi-arrow-right icon "></i>
-                    <a className="footer-menu-link" href="#0">
-                      support
-                    </a>
-                  </li>
-                  <li className="footer-menu-item">
-                    <i className="bi bi-arrow-right icon "></i>
-                    <a className="footer-menu-link" href="#0">
-                      dashboard
-                    </a>
-                  </li>
-                  <li className="footer-menu-item">
-                    <i className="bi bi-arrow-right icon "></i>
-                    <a className="footer-menu-link" href="#0">
-                      drivers
-                    </a>
-                  </li>
-                  <li className="footer-menu-item">
-                    <i className="bi bi-arrow-right icon "></i>
-                    <a className="footer-menu-link" href="#0">
-                      projects
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-12     col-lg-4 footer-col ">
-              <h2 className=" footer-col-title    ">contact information</h2>
-              <div className="footer-col-content-wrapper">
-                <div className="contact-info-card">
-                  <i className="bi bi-envelope icon"></i>
-                  <a
-                    className="text-lowercase  info"
-                    href="mailto:ahmedmostafakhedr31@gmail.com"
-                  >
-                    ahmedmostafakhedr31@gmail.com
-                  </a>
+          </header>
+          <Outlet />
+
+          {/* Footer Start */}
+          <footer className="page-footer dark-color-footer" id="page-footer">
+            <div
+              className="overlay-photo-image-bg"
+              data-bg-img="assets/images/sections-bg-images/footer-bg-1.jpg"
+              data-bg-opacity=".25"
+            ></div>
+            <div className="container">
+              <div className="row footer-cols">
+                <div className="col-12 col-md-8 col-lg-4  footer-col ">
+                  <img
+                    className="img-fluid footer-logo"
+                    loading="lazy"
+                    src="logo.png"
+                    alt="logo"
+                  />
+                  <div className="footer-col-content-wrapper">
+                    <p className="footer-text-about-us ">
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Voluptatibus facere modi possimus dignissimos, aliquam
+                      nobis eaque? Voluptatem magnam quisquam rem.
+                    </p>
+                  </div>
+                  <div className="form-area ">
+                    <div className="mailchimp-form ">
+                      <form
+                        className="one-field-form"
+                        method="post"
+                        action="#0"
+                      >
+                        <div className="field-group ">
+                          <label className="email-label" for="email-input">
+                            {" "}
+                            Subscribe to our news letter
+                          </label>
+                          <input
+                            className="email-input "
+                            type="email"
+                            value=""
+                            name="EMAIL"
+                            id="email-input"
+                            placeholder="Email Address"
+                            autocomplete="off"
+                          />
+                          <div className="cta-area">
+                            <input
+                              className="btn-solid subscribe-btn"
+                              type="submit"
+                              value="Subscribe"
+                              name="subscribe"
+                            />
+                          </div>
+                        </div>
+                        <span className="email-notice">
+                          *we will not share your personal info
+                        </span>
+                      </form>
+                    </div>
+                  </div>
                 </div>
-                <div className="contact-info-card">
-                  <i className="bi bi-geo-alt icon"></i>
-                  <span className="text-lowercase  info">Cairo Egypt</span>
+                <div className="col-6 col-lg-2  footer-col ">
+                  <h2 className=" footer-col-title    ">useful links</h2>
+                  <div className="footer-col-content-wrapper">
+                    <ul className="footer-menu ">
+                      <li className="footer-menu-item">
+                        <i className="bi bi-arrow-right icon "></i>
+                        <a className="footer-menu-link" href="#0">
+                          Google
+                        </a>
+                      </li>
+                      <li className="footer-menu-item">
+                        <i className="bi bi-arrow-right icon "></i>
+                        <a className="footer-menu-link" href="#0">
+                          Dribbble
+                        </a>
+                      </li>
+                      <li className="footer-menu-item">
+                        <i className="bi bi-arrow-right icon "></i>
+                        <a className="footer-menu-link" href="#0">
+                          linkedIn
+                        </a>
+                      </li>
+                      <li className="footer-menu-item">
+                        <i className="bi bi-arrow-right icon "></i>
+                        <a className="footer-menu-link" href="#0">
+                          wikipedia
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="contact-info-card">
-                  <i className="bi bi-phone icon"></i>
-                  <a className="info" href="tel:+20123456789">
-                    +20123456789{" "}
-                  </a>
+                <div className="col-6 col-lg-2 footer-col ">
+                  <h2 className=" footer-col-title    ">Resources</h2>
+                  <div className="footer-col-content-wrapper">
+                    <ul className="footer-menu">
+                      <li className="footer-menu-item">
+                        <i className="bi bi-arrow-right icon "></i>
+                        <a className="footer-menu-link" href="#0">
+                          support
+                        </a>
+                      </li>
+                      <li className="footer-menu-item">
+                        <i className="bi bi-arrow-right icon "></i>
+                        <a className="footer-menu-link" href="#0">
+                          dashboard
+                        </a>
+                      </li>
+                      <li className="footer-menu-item">
+                        <i className="bi bi-arrow-right icon "></i>
+                        <a className="footer-menu-link" href="#0">
+                          drivers
+                        </a>
+                      </li>
+                      <li className="footer-menu-item">
+                        <i className="bi bi-arrow-right icon "></i>
+                        <a className="footer-menu-link" href="#0">
+                          projects
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="contact-info-card">
-                  <div className="social-icons">
-                    <div className="sc-wrapper dir-row sc-size-32">
-                      <ul className="sc-list">
-                        <li className="sc-item " title="Facebook">
-                          <a
-                            className="sc-link"
-                            href="#0"
-                            title="social media icon"
-                          >
-                            <i className="fab fa-facebook-f sc-icon"></i>
-                          </a>
-                        </li>
-                        <li className="sc-item " title="youtube">
-                          <a
-                            className="sc-link"
-                            href="#0"
-                            title="social media icon"
-                          >
-                            <i className="fab fa-youtube sc-icon"></i>
-                          </a>
-                        </li>
-                        <li className="sc-item " title="instagram">
-                          <a
-                            className="sc-link"
-                            href="#0"
-                            title="social media icon"
-                          >
-                            <i className="fab fa-instagram sc-icon"></i>
-                          </a>
-                        </li>
-                        <li className="sc-item " title="twitter">
-                          <a
-                            className="sc-link"
-                            href="#0"
-                            title="social media icon"
-                          >
-                            <i className="fab fa-twitter sc-icon"></i>
-                          </a>
-                        </li>
-                      </ul>
+                <div className="col-12     col-lg-4 footer-col ">
+                  <h2 className=" footer-col-title    ">contact information</h2>
+                  <div className="footer-col-content-wrapper">
+                    <div className="contact-info-card">
+                      <i className="bi bi-envelope icon"></i>
+                      <a
+                        className="text-lowercase  info"
+                        href="mailto:ahmedmostafakhedr31@gmail.com"
+                      >
+                        ahmedmostafakhedr31@gmail.com
+                      </a>
+                    </div>
+                    <div className="contact-info-card">
+                      <i className="bi bi-geo-alt icon"></i>
+                      <span className="text-lowercase  info">Cairo Egypt</span>
+                    </div>
+                    <div className="contact-info-card">
+                      <i className="bi bi-phone icon"></i>
+                      <a className="info" href="tel:+20123456789">
+                        +20123456789{" "}
+                      </a>
+                    </div>
+                    <div className="contact-info-card">
+                      <div className="social-icons">
+                        <div className="sc-wrapper dir-row sc-size-32">
+                          <ul className="sc-list">
+                            <li className="sc-item " title="Facebook">
+                              <a
+                                className="sc-link"
+                                href="#0"
+                                title="social media icon"
+                              >
+                                <i className="fab fa-facebook-f sc-icon"></i>
+                              </a>
+                            </li>
+                            <li className="sc-item " title="youtube">
+                              <a
+                                className="sc-link"
+                                href="#0"
+                                title="social media icon"
+                              >
+                                <i className="fab fa-youtube sc-icon"></i>
+                              </a>
+                            </li>
+                            <li className="sc-item " title="instagram">
+                              <a
+                                className="sc-link"
+                                href="#0"
+                                title="social media icon"
+                              >
+                                <i className="fab fa-instagram sc-icon"></i>
+                              </a>
+                            </li>
+                            <li className="sc-item " title="twitter">
+                              <a
+                                className="sc-link"
+                                href="#0"
+                                title="social media icon"
+                              >
+                                <i className="fab fa-twitter sc-icon"></i>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="copyrights ">
-          <div className="container">
-            <div className="row">
-              <div className="col-12 col-md-6 d-flex justify-content-start">
-                <p className="creadits">
-                  &copy; 2024 Created by:
-                  <a className="link" href="#0">
-                    Ahmed Mostafa
-                  </a>
-                </p>
-              </div>
-              <div className="col-12 col-md-6 d-flex justify-content-end">
-                <div className="terms-links">
-                  <a href="#0">Terms of Use </a>|{" "}
-                  <a href="#0">Privacy Policy</a>
+            <div className="copyrights ">
+              <div className="container">
+                <div className="row">
+                  <div className="col-12 col-md-6 d-flex justify-content-start">
+                    <p className="creadits">
+                      &copy; 2024 Created by:
+                      <a className="link" href="#0">
+                        Ahmed Mostafa
+                      </a>
+                    </p>
+                  </div>
+                  <div className="col-12 col-md-6 d-flex justify-content-end">
+                    <div className="terms-links">
+                      <a href="#0">Terms of Use </a>|{" "}
+                      <a href="#0">Privacy Policy</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </footer>
+          </footer>
+        </>
+      )}
     </>
   );
 };

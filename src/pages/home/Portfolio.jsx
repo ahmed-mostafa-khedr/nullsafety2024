@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Bounce } from "react-awesome-reveal";
-const WelcomeSection = () => {
+import { NavLink } from "react-router-dom";
+const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState("*");
 
   const handleFilterClick = (filter) => {
@@ -66,10 +67,10 @@ const WelcomeSection = () => {
             </h2>
           </div>
           <div className=" cta-area   wow fadeInUp" data-wow-delay=".8s">
-            <a className="cta-btn btn-solid    " href="#.">
+            <NavLink className="cta-btn btn-solid" to="projects">
               see more
               <i className="bi bi-arrow-right icon "></i>
-            </a>
+            </NavLink>
           </div>
         </div>
         <div className="portfolio-wrapper  ">
@@ -161,4 +162,4 @@ const WelcomeSection = () => {
   );
 };
 
-export default WelcomeSection;
+export default Portfolio;

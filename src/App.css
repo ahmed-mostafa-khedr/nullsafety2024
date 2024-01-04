@@ -118,8 +118,12 @@ ul.breadcrumb li a:hover {
 
 
 .internal {
+  background-position: center;
   background-attachment: fixed !important;
-  background-size: 100% 55% !important;
+  background-size: cover !important;
+  padding: 45vh 0 10vh !important;
+
+  background-repeat: no-repeat;
 }
 
 
@@ -131,7 +135,8 @@ ul.breadcrumb li a:hover {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: #0000007b;
+  background-color: #060922;
+  opacity: 0.25;
 }
 
 .nav-item .nav-link.active {
@@ -142,4 +147,36 @@ ul.breadcrumb li a:hover {
 .nav-item .nav-link.focus, .nav-item .nav-link.hover {
   color: #01447e !important;
   font-weight: 500;
+}
+
+.go-dark {
+  background-color: #060922 !important;
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.go-dark i {
+
+  color: #fff !important;
+
+}
+
+.go-light {
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.go-light i {
+
+  color: #060922 !important;
+
 }
